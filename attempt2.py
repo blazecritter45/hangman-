@@ -45,3 +45,30 @@ missedLetters = ''
 correctLetters = ''
 secretWord = getRandomWord()
 gameIsDone = False
+
+while True:
+    displayBoard(hang, missedLetters, correctLetters, secretWord)
+
+    guess = getGuess(missedLetters + correctLetters)
+
+    if guess in secretWord:
+        correctLetters = correctLetters + guess
+
+        foundAllLetters = True
+        for i in range(len(secretWord)):
+            if secretWord[i] not in correctLetters:
+                foundAllLetters = False
+                break
+        if foundAllLetters:
+            print('\nYes! The secret word is "' +
+                  secretWord + '"! You have won!')
+            gameIsDone = True
+    else:
+        missedLetters = missedLetters + guess
+
+        if len(missedLetters) == len(hang) - 1:
+            displayBoard(hang, missedLetters,
+                         correctLetters, secretWord)
+            print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' +
+                  str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
+            gameIsDone = True
