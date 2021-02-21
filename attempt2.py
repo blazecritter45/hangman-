@@ -36,3 +36,12 @@ def displayBoard(hang, missedLetters, correctLetters, secretWord):
             print('Please enter a LETTER.')
         else:
             return guess
+        
+        def playAgain():
+    return input("\nDo you want to play again? ").lower().startswith('y')
+
+
+missedLetters = ''
+correctLetters = ''
+secretWord = getRandomWord()
+gameIsDone = False
